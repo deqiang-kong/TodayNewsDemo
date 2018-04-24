@@ -2,12 +2,13 @@
 //  AppDelegate.swift
 //  TodayNewsDemo
 //
-//  Created by kaipai on 2017/12/13.
-//  Copyright © 2017年 Kaipai. All rights reserved.
+//  Created by kongdq on 2017/12/13.
+//  Copyright © 2017年 kongdq. All rights reserved.
 //
 
 import UIKit
 import CoreData
+import SwiftTheme
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+
+        /// 设置主题颜色
+        ThemeManager.setTheme(plistName: UserDefaults.standard.bool(forKey: isNight) ? "night_theme" : "default_theme", path: .mainBundle)
+        
+        //改为 从 storyboard 启动
+        // 创建窗口
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let advertiseVC = AdvertiseViewController()
+        window?.rootViewController = advertiseVC
+        window?.makeKeyAndVisible()
+        
         return true
     }
 
